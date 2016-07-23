@@ -4,7 +4,6 @@ Created on 2015-04-02
 @author: Niranjan
 '''
 
-
 import re, math, collections, itertools, os
 import nltk, nltk.classify.util, nltk.metrics
 from nltk.classify import NaiveBayesClassifier
@@ -21,7 +20,7 @@ predictedfile=open("prediction.txt",'w')
 Actualfile=open("actual.txt",'w')
 stemmer=PorterStemmer()
 
-#this function takes a feature selection mechanism and returns its performance in a variety of metrics
+#Takes a feature selection mechanism and returns its performance in a variety of metrics
 def evaluate_features(feature_select):
         posFeatures = []
         negFeatures = []
@@ -48,8 +47,6 @@ def evaluate_features(feature_select):
                         negWords = [feature_select(negWords), 'neg']
                         negFeatures.append(negWords)
                         
-
-        
         #selects 3/4 of the features to be used for training and 1/4 to be used for testing
         posCutoff = int(math.floor(len(posFeatures)*3/4))
         print("Positive train:"), posCutoff
@@ -73,7 +70,6 @@ def evaluate_features(feature_select):
         predictedfile.write("\n"+str(testSets))
         Actualfile.write("\n"+str(referenceSets))
         
-
         #prints metrics to show how well the feature selection did
         print 'train on %d instances, test on %d instances' % (len(trainFeatures), len(testFeatures))
         print 'accuracy:', nltk.classify.util.accuracy(classifier, testFeatures)
@@ -82,7 +78,6 @@ def evaluate_features(feature_select):
         print 'neg precision:', nltk.metrics.precision(referenceSets['neg'], testSets['neg'])
         print 'neg recall:', nltk.metrics.recall(referenceSets['neg'], testSets['neg'])
         classifier.show_most_informative_features(10)
-
 
 #creates a feature selection mechanism that uses all words
 def make_full_dict(words):
