@@ -107,14 +107,10 @@ def create_word_scores():
         word_fd = FreqDist()
         cond_word_fd = ConditionalFreqDist()
         for word in posWords:
-                #word_fd.inc(word.lower())
                 word_fd[word.lower()]+=1
-                #cond_word_fd['pos'].inc(word.lower())
                 cond_word_fd['pos'][word.lower()]+=1
         for word in negWords:
-                #word_fd.inc(word.lower())
                 word_fd[word.lower()]+=1
-                #cond_word_fd['neg'].inc(word.lower())
                 cond_word_fd['neg'][word.lower()]+=1
 
         #finds the number of positive and negative words, as well as the total number of words
